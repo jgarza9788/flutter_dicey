@@ -30,7 +30,14 @@ dependencies:
 #https://pub.dev/packages/shared_preferences#-installing-tab-
   shared_preferences: ^0.5.3+4
 
+#https://pub.dev/packages/dynamic_theme#-installing-tab-
+  dynamic_theme: ^1.0.1
 
+##https://pub.dev/packages/flutter_bloc#-installing-tab-
+#  flutter_bloc: ^0.21.0
+#
+##https://pub.dev/packages/bloc#-installing-tab-
+#  bloc: ^0.15.0
 
 dev_dependencies:
   flutter_test:

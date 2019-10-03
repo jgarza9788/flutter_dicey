@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'dart:math';
+import 'constants.dart';
 
 class CoinPage extends StatelessWidget {
   const CoinPage({
@@ -106,23 +107,11 @@ class _CoinState extends State<Coin> with SingleTickerProviderStateMixin{
           SizedBox(
             height: 25.0,
           ),
-          Container(
-            height: 100.0,
-            child: RaisedButton(
-                child: Text(
-                  'Flip',
-                  style: TextStyle(fontSize: 50.0),
-                ),
-//                color: Colors.red,
-                onPressed: (){
-                  controller.forward(from: 0);
-                },
-                elevation: 12.0,
-                shape: RoundedRectangleBorder(borderRadius: new BorderRadius.circular(50.0))
-            ),
-          ),
+          ActionButton(controller: controller,text: 'Flip',),
         ],
       ),
     );
   }
 }
+
+

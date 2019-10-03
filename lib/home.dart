@@ -65,17 +65,10 @@ Widget build(BuildContext context) {
     bottomNavigationBar: Material(
       color: Theme.of(context).canvasColor,
       child: TabBar(
-
         tabs: kTabs,
-//        indicatorColor: Colors.black,
         indicatorWeight: 2.0,
-
-//        unselectedLabelColor: Colors.grey[200],
-//        labelColor: Colors.black,
         controller: _tabController,
       ),
-//      borderRadius: BorderRadius.circular(20.0),
-//      elevation: 6.0,
     ),
   );
 }
