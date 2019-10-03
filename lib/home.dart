@@ -19,49 +19,49 @@ class HomeContent extends StatefulWidget {
   _HomeContentState createState() => _HomeContentState();
 }
 
-class _HomeContentState extends State<HomeContent> with SingleTickerProviderStateMixin{
+class _HomeContentState extends State<HomeContent> with SingleTickerProviderStateMixin {
 
-TabController _tabController;
+  TabController _tabController;
 
-@override
-void initState() {
-  // TODO: implement initState
-  super.initState();
-  _tabController = TabController(
-    length: kTabPages.length,
-    vsync: this,
-  );
-}
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _tabController = TabController(
+      length: kTabPages.length,
+      vsync: this,
+    );
+  }
 
-@override
-void dispose(){
-  _tabController.dispose();
-  super.dispose();
-}
+  @override
+  void dispose() {
+    _tabController.dispose();
+    super.dispose();
+  }
 
 
-@override
-Widget build(BuildContext context) {
-  return Scaffold(
-    appBar: AppBar(
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
 //          leading: Icon(MdiIcons.dice1),
-      title: Text('Dicey'),
+        title: Text('Dicey'),
 //      backgroundColor: Colors.red,
-      actions: <Widget>[
-        IconButton(
-            icon: Icon(MdiIcons.settings,
+        actions: <Widget>[
+          IconButton(
+              icon: Icon(MdiIcons.settings,
 //              color: Colors.grey[200],
-            ),
-            onPressed: () {
+              ),
+              onPressed: () {
                 Navigator.pushNamed(context, Settings.id);
-            }
-        )
-      ],
-    ),
-    body: TabBarView(
-      children: kTabPages,
-      controller: _tabController,
-    ),
+              }
+          )
+        ],
+      ),
+      body: TabBarView(
+        children: kTabPages,
+        controller: _tabController,
+      ),
     bottomNavigationBar: Material(
       color: Theme.of(context).canvasColor,
       child: TabBar(
@@ -70,6 +70,8 @@ Widget build(BuildContext context) {
         controller: _tabController,
       ),
     ),
-  );
+
+    );
+  }
 }
-}
+

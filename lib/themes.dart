@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
 
 
+ThemeData darkMode() {
+  return ThemeData.dark().copyWith(
+    indicatorColor: Colors.blue,
+  );
+}
+
 
 ThemeData redAndDark() {
   return ThemeData.dark().copyWith(
@@ -150,3 +156,45 @@ ThemeData blueSteel() {
     ),
   );
 }
+
+
+ThemeData purpleRain() {
+  return ThemeData.light().copyWith(
+    primaryColor: Colors.deepPurple,
+    accentColor: Colors.deepPurple,
+    canvasColor: Colors.deepPurple[100].withOpacity(1.0),
+    backgroundColor: Colors.deepPurple,
+    splashColor: Colors.deepPurple[900],
+    buttonTheme: ButtonThemeData(
+      buttonColor: Colors.deepPurple[900],
+      splashColor: Colors.deepPurpleAccent[100],
+      shape: RoundedRectangleBorder(),
+    ),
+    primaryTextTheme: TextTheme(
+      title: TextStyle(color: Colors.grey[200],fontSize: 50.0,fontWeight:FontWeight.bold),
+    ),
+    indicatorColor: Colors.deepPurpleAccent,
+    iconTheme: IconThemeData(
+        color: Colors.deepPurple,
+    ),
+    tabBarTheme: TabBarTheme(
+      labelColor: Colors.deepPurple[900],
+      unselectedLabelColor: Colors.deepPurpleAccent[200],
+    ),
+    appBarTheme: AppBarTheme().copyWith(
+      textTheme: TextTheme().copyWith(
+        title: TextStyle(color: Colors.deepPurple[100],fontSize: 20.0,fontWeight:FontWeight.bold),
+      ),
+      iconTheme: IconThemeData().copyWith(
+        color: Colors.deepPurple[100],
+      ),
+    ),
+    textTheme: TextTheme().copyWith(
+      body1: TextStyle(
+          fontSize: 24.0
+      ),
+    ),
+  );
+}
+
+

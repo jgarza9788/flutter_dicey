@@ -22,28 +22,28 @@ class Settings extends StatelessWidget {
         children: <Widget>[
           ThemeButton(
             themeName: 'DarkMode',
-            colors: [Colors.blue,Colors.white,Colors.black],
+            colors: [Colors.blue,Colors.grey[900],Colors.white],
             setTheme: (){
-              DynamicTheme.of(context).setThemeData(ThemeData.dark());
+              DynamicTheme.of(context).setThemeData(darkMode());
             },
           ),
           ThemeButton(
             themeName: 'Red And Dark',
-            colors: [Colors.red,Colors.grey[900],Colors.black],
+            colors: [Colors.red,Colors.grey[900],Colors.grey[700]],
             setTheme: (){
               DynamicTheme.of(context).setThemeData(redAndDark());
             },
           ),
           ThemeButton(
             themeName: 'Blue And Dark',
-            colors: [Colors.blue,Colors.grey[900],Colors.black],
+            colors: [Colors.blue,Colors.grey[900],Colors.grey[700]],
             setTheme: (){
               DynamicTheme.of(context).setThemeData(blueAndDark());
             },
           ),
           ThemeButton(
             themeName: 'Toxic',
-            colors: [Colors.lightGreen,Colors.lightGreenAccent,Colors.black],
+            colors: [Colors.lightGreen,Colors.lightGreenAccent,Colors.grey[900]],
             setTheme: (){
               DynamicTheme.of(context).setThemeData(toxic());
             },
@@ -55,9 +55,17 @@ class Settings extends StatelessWidget {
               DynamicTheme.of(context).setThemeData(blueSteel());
             },
           ),
+          ThemeButton(
+            themeName: 'Purple Rain',
+            colors: [Colors.deepPurple[900],Colors.deepPurpleAccent,Colors.deepPurple[100]],
+            setTheme: (){
+              DynamicTheme.of(context).setThemeData(purpleRain());
+            },
+          ),
         ],
       )
     );
   }
 }
+
 

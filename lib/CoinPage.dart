@@ -51,7 +51,8 @@ class _CoinState extends State<Coin> with SingleTickerProviderStateMixin{
     //https://api.flutter.dev/flutter/animation/Curves-class.html
     animation = CurvedAnimation(parent: controller,curve: Curves.easeInOutBack);
 
-//    controller.forward(from: 0);
+    Flip();
+    controller.forward(from: 0);
 //    controller.reverse(from: 1);
 
     animation.addStatusListener((status){
@@ -82,36 +83,38 @@ class _CoinState extends State<Coin> with SingleTickerProviderStateMixin{
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(20.0),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: <Widget>[
-          Expanded(
-            flex: 4,
-            child: Transform(
-                transform: Matrix4.rotationX(
-                    1.5-(animation.value*1.5)
-                )..translate(
-                    0.0,(animation.value*100.0)-100.0
-                ),
-                child: Icon(
-                  Coin[value],
-                  size: 250,
-                  color: Theme.of(context).iconTheme.color.withOpacity(animation.value.clamp(0.0,1.0) ),
+        padding: const EdgeInsets.all(20.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            Expanded(
+              flex: 4,
+              child: Transform(
+                  transform: Matrix4.rotationX(
+                      1.5-(animation.value*1.5)
+                  )..translate(
+                      0.0,(animation.value*100.0)-100.0
+                  ),
+                  child: Icon(
+                    Coin[value],
+                    size: 250,
+                    color: Theme.of(context).iconTheme.color.withOpacity(animation.value.clamp(0.0,1.0) ),
 //                  color: ColorScheme.dark().primaryVariant,
 //                  color: Colors.grey[200].withOpacity( animation.value.clamp(0.0,1.0) ),
-                )
+                  )
+              ),
             ),
-          ),
-          SizedBox(
-            height: 25.0,
-          ),
-          ActionButton(controller: controller,text: 'Flip',),
-        ],
-      ),
-    );
+            SizedBox(
+              height: 25.0,
+            ),
+            ActionButton(controller: controller,text: 'Flip',)
+          ],
+        ),
+      );
   }
 }
+
+
 
 

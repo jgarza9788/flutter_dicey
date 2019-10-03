@@ -62,6 +62,8 @@ class ActionButton extends StatelessWidget {
 }
 
 
+
+
 class ThemeButton extends StatelessWidget {
   const ThemeButton({
     Key key,
@@ -81,47 +83,20 @@ class ThemeButton extends StatelessWidget {
       child: Container(
         height: 80.0,
         child: RaisedButton(
-            color: colors[0],
+//            color: colors[0],
+            color: Colors.grey,
             child: Row(
               children: <Widget>[
                 Expanded(
                   child: Text(themeName,
                     style: TextStyle(
                       fontSize: 20.0,
-                      color: Theme.of(context).primaryTextTheme.title.color,
+//                      color: Theme.of(context).primaryTextTheme.title.color,
+                      color: Colors.grey[900]
                     ),
                   ),
                 ),
-                Card(
-                  elevation: 12.0,
-                  color: Colors.blue,
-                  child: Container(
-                    height: 50.0,
-                    width: 50.0,
-//                    decoration: BoxDecoration(
-//                      borderRadius: BorderRadius.circular(50.0),
-//                    ),
-                    child: Column(
-                      children: <Widget>[
-                        Expanded(
-                          child: Container(
-                            color: colors[0],
-                          ),
-                        ),
-                        Expanded(
-                          child: Container(
-                            color: colors[1],
-                          ),
-                        ),
-                        Expanded(
-                          child: Container(
-                            color: colors[2],
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
+                ThemePreview(colors: colors,),
               ],
             ),
             onPressed: setTheme,
@@ -132,3 +107,67 @@ class ThemeButton extends StatelessWidget {
     );
   }
 }
+
+class ThemePreview extends StatelessWidget {
+  const ThemePreview({
+    Key key,
+    this.colors,
+  }) : super(key: key);
+
+  final List<Color> colors;
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      alignment: Alignment.center,
+      children: <Widget>[
+        Container(
+          width: 50.0,
+          height: 50.0,
+          decoration: new BoxDecoration(
+            color: colors[0],
+            shape: BoxShape.circle,
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.5),
+                offset: Offset(2.0, 2.0),
+                blurRadius: 5.0,
+              )
+            ],
+          ),
+        ),
+        Container(
+          width: 33.0,
+          height: 33.0,
+          decoration: new BoxDecoration(
+            color: colors[1],
+            shape: BoxShape.circle,
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.25),
+                offset: Offset(2.0, 2.0),
+                blurRadius: 5.0,
+              )
+            ],
+          ),
+        ),
+        Container(
+          width: 16.5,
+          height: 16.5,
+          decoration: new BoxDecoration(
+            color: colors[2],
+            shape: BoxShape.circle,
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.25),
+                offset: Offset(2.0, 2.0),
+                blurRadius: 5.0,
+              )
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+}
+

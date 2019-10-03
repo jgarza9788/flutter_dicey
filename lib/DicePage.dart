@@ -60,7 +60,8 @@ class _DiceState extends State<Dice> with SingleTickerProviderStateMixin{
     animEase = CurvedAnimation(parent: controller,curve: Curves.ease);
     animBounce = CurvedAnimation(parent: controller,curve: Curves.bounceOut);
 
-//    controller.forward(from: 0);
+    Roll();
+    controller.forward(from: 0);
 //    controller.reverse(from: 1);
 
     controller.addStatusListener((status){
@@ -70,7 +71,6 @@ class _DiceState extends State<Dice> with SingleTickerProviderStateMixin{
       if(status == AnimationStatus.forward)
       {
         Roll();
-
       }
 
     });
