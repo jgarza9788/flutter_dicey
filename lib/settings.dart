@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'home.dart';
 import 'package:dynamic_theme/dynamic_theme.dart';
 import 'themes.dart';
 import 'constants.dart';
@@ -25,6 +23,7 @@ class Settings extends StatelessWidget {
             colors: [Colors.blue,Colors.grey[900],Colors.white],
             setTheme: (){
               DynamicTheme.of(context).setThemeData(darkMode());
+              saveTheme('darkMode');
             },
           ),
           ThemeButton(
@@ -32,6 +31,7 @@ class Settings extends StatelessWidget {
             colors: [Colors.red,Colors.grey[900],Colors.grey[700]],
             setTheme: (){
               DynamicTheme.of(context).setThemeData(redAndDark());
+              saveTheme('redAndDark');
             },
           ),
           ThemeButton(
@@ -39,6 +39,7 @@ class Settings extends StatelessWidget {
             colors: [Colors.blue,Colors.grey[900],Colors.grey[700]],
             setTheme: (){
               DynamicTheme.of(context).setThemeData(blueAndDark());
+              saveTheme('blueAndDark');
             },
           ),
           ThemeButton(
@@ -46,6 +47,7 @@ class Settings extends StatelessWidget {
             colors: [Colors.lightGreen,Colors.lightGreenAccent,Colors.grey[900]],
             setTheme: (){
               DynamicTheme.of(context).setThemeData(toxic());
+              saveTheme('toxic');
             },
           ),
           ThemeButton(
@@ -53,6 +55,7 @@ class Settings extends StatelessWidget {
             colors: [Colors.blueGrey[900],Colors.blueGrey,Colors.grey[300]],
             setTheme: (){
               DynamicTheme.of(context).setThemeData(blueSteel());
+              saveTheme('blueSteel');
             },
           ),
           ThemeButton(
@@ -60,6 +63,7 @@ class Settings extends StatelessWidget {
             colors: [Colors.deepPurple[900],Colors.deepPurpleAccent,Colors.deepPurple[100]],
             setTheme: (){
               DynamicTheme.of(context).setThemeData(purpleRain());
+              saveTheme('purpleRain');
             },
           ),
         ],

@@ -1,4 +1,53 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:dynamic_theme/dynamic_theme.dart';
+
+saveTheme(themeName) async {
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  print('theme: $themeName');
+  await prefs.setString('themeName', themeName);
+}
+
+Future<String> getStrTheme() async{
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  String themeName = prefs.getString('themeName');
+  print('theme: $themeName');
+  return themeName;
+}
+
+ThemeData getTheme(themeName){
+
+    if (themeName == 'redAndDark')
+    {
+//      DynamicTheme.of(context).setThemeData(redAndDark());
+  return redAndDark();
+    }
+  else if (themeName == 'blueAndDark')
+    {
+//      DynamicTheme.of(context).setThemeData(blueAndDark());
+      return blueAndDark();
+    }
+  else if (themeName == 'toxic')
+  {
+//    DynamicTheme.of(context).setThemeData(toxic());
+  return toxic();
+  }
+  else if (themeName == 'blueSteel')
+  {
+//    DynamicTheme.of(context).setThemeData(blueSteel());
+  return blueAndDark();
+  }
+  else if (themeName == 'purpleRain')
+  {
+//    DynamicTheme.of(context).setThemeData(purpleRain());
+  return purpleRain();
+  }
+  else
+  {
+//    DynamicTheme.of(context).setThemeData(darkMode());
+  return darkMode();
+  }
+}
 
 
 ThemeData darkMode() {
@@ -6,7 +55,6 @@ ThemeData darkMode() {
     indicatorColor: Colors.blue,
   );
 }
-
 
 ThemeData redAndDark() {
   return ThemeData.dark().copyWith(

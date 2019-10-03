@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'dart:math';
 import 'constants.dart';
+import 'themes.dart';
 
 class CoinPage extends StatelessWidget {
   const CoinPage({
@@ -37,7 +38,6 @@ class _CoinState extends State<Coin> with SingleTickerProviderStateMixin{
 
   AnimationController controller;
   Animation animation;
-  double opacity= 0.0;
 
   @override
   void initState() {
@@ -49,10 +49,11 @@ class _CoinState extends State<Coin> with SingleTickerProviderStateMixin{
     );
 
     //https://api.flutter.dev/flutter/animation/Curves-class.html
-    animation = CurvedAnimation(parent: controller,curve: Curves.easeInOutBack);
+    animation = CurvedAnimation(parent: controller,curve: Curves.easeIn);
 
     Flip();
     controller.forward(from: 0);
+
 //    controller.reverse(from: 1);
 
     animation.addStatusListener((status){
@@ -69,7 +70,6 @@ class _CoinState extends State<Coin> with SingleTickerProviderStateMixin{
       setState(() {
         print(controller.value);
         print(animation.value);
-
       });
     });
   }
@@ -100,15 +100,13 @@ class _CoinState extends State<Coin> with SingleTickerProviderStateMixin{
                     Coin[value],
                     size: 250,
                     color: Theme.of(context).iconTheme.color.withOpacity(animation.value.clamp(0.0,1.0) ),
-//                  color: ColorScheme.dark().primaryVariant,
-//                  color: Colors.grey[200].withOpacity( animation.value.clamp(0.0,1.0) ),
                   )
               ),
-            ),
+              ),
             SizedBox(
               height: 25.0,
             ),
-            ActionButton(controller: controller,text: 'Flip',)
+            ActionButton(controller: controller,text: 'Flip',),
           ],
         ),
       );

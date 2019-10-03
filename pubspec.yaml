@@ -36,7 +36,6 @@ dependencies:
 
 
 dev_dependencies:
-  flutter_launcher_icons: "^0.7.0"
   flutter_test:
     sdk: flutter
 
@@ -54,14 +53,6 @@ flutter:
 
   assets:
     - images/
-
-flutter_icons:
-  ios: true
-  android: true
-  image_path_ios: "icons/icon.png"
-  image_path_android: "icons/icon.png"
-  adaptive_icon_background: "icons/background.png"
-  adaptive_icon_foreground: "icons/foreground.png"
 
   # To add assets to your application, add an assets section, like this:
   # assets:

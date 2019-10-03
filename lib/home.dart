@@ -1,9 +1,12 @@
+import 'dart:io';
+
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'constants.dart';
-
+import 'themes.dart';
 import 'settings.dart';
+import 'package:flutter/scheduler.dart';
 
 class Home extends StatelessWidget {
   static String id = 'home';
