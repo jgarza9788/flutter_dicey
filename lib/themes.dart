@@ -162,9 +162,10 @@ ThemeData purpleRain() {
   return ThemeData.light().copyWith(
     primaryColor: Colors.deepPurple,
     accentColor: Colors.deepPurple,
-    canvasColor: Colors.deepPurple[100].withOpacity(1.0),
+    canvasColor: Colors.deepPurple[200],
     backgroundColor: Colors.deepPurple,
     splashColor: Colors.deepPurple[900],
+    scaffoldBackgroundColor: Colors.deepPurple[200],
     buttonTheme: ButtonThemeData(
       buttonColor: Colors.deepPurple[900],
       splashColor: Colors.deepPurpleAccent[100],
