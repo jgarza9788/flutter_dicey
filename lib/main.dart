@@ -5,38 +5,15 @@ import 'package:dynamic_theme/dynamic_theme.dart';
 import 'themes.dart';
 import 'dart:io';
 
-void main() => runApp(MyApp2());
+void main() => runApp(MyApp());
 
-class MyApp extends StatelessWidget {
+
+class MyApp extends StatefulWidget {
   @override
-  Widget build(BuildContext context){
-    return DynamicTheme(
-        defaultBrightness: Brightness.light,
-        data: (brightness) => darkMode(),
-        themedWidgetBuilder: (context, theme) {
-          return new MaterialApp(
-            debugShowCheckedModeBanner: false,
-//            title: 'Flutter Demo',
-            theme: theme,
-//            home: new MyHomePage(title: 'Flutter Demo Home Page'),
-            initialRoute: Home.id,
-              routes: {
-                Home.id: (context) => Home(),
-                Settings.id: (context) => Settings()
-              }
-          );
-        }
-    );
-  }
+  _MyAppState createState() => _MyAppState();
 }
 
-
-class MyApp2 extends StatefulWidget {
-  @override
-  _MyApp2State createState() => _MyApp2State();
-}
-
-class _MyApp2State extends State<MyApp2> {
+class _MyAppState extends State<MyApp> {
   String themeName = '';
 
   getThemeName()async{
@@ -59,9 +36,7 @@ class _MyApp2State extends State<MyApp2> {
         themedWidgetBuilder: (context, theme) {
           return new MaterialApp(
               debugShowCheckedModeBanner: false,
-//            title: 'Flutter Demo',
               theme: theme,
-//            home: new MyHomePage(title: 'Flutter Demo Home Page'),
               initialRoute: Home.id,
               routes: {
                 Home.id: (context) => Home(),
