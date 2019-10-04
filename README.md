@@ -1,6 +1,3 @@
 # flutter_dicey
  
-https://youtu.be/hWHSjy3jO4g
-
-
-[![Audi R8](https://youtu.be/hWHSjy3jO4g.jpg)](https://youtu.be/hWHSjy3jO4g "Audi R8")
+[![Dicey Demo](http://img.youtube.com/vi/hWHSjy3jO4g/0.jpg)](http://www.youtube.com/watch?v=hWHSjy3jO4g "Dicey Demo")
