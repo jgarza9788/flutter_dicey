@@ -23,18 +23,40 @@ class Coin extends StatefulWidget {
 class _CoinState extends State<Coin> with SingleTickerProviderStateMixin{
 
   int value = 0;
-  List<IconData> Coin = [
+  List<IconData> coin = [
     MdiIcons.alphaHCircle,
     MdiIcons.alphaTCircle
   ] ;
 
-  void Flip()
+  List<Widget> historyList = [];
+
+  void Flip(bool first)
   {
     var rng = new Random();
     setState(() {
+
+      if (!first)
+      {
+        historyList.add(
+            Icon(
+              coin[value],
+              size: 50.0,
+              color: Theme.of(context).iconTheme.color.withOpacity(0.125),
+            )
+        );
+
+        if (historyList.length > 7)
+        {
+          historyList.removeAt(0);
+        }
+      }
+      print(historyList);
+
+
       value = rng.nextInt(2);
     });
   }
+
 
   AnimationController controller;
   Animation animation;
@@ -51,9 +73,8 @@ class _CoinState extends State<Coin> with SingleTickerProviderStateMixin{
     //https://api.flutter.dev/flutter/animation/Curves-class.html
     animation = CurvedAnimation(parent: controller,curve: Curves.easeIn);
 
-    Flip();
+    Flip(true);
     controller.forward(from: 0);
-
 //    controller.reverse(from: 1);
 
     animation.addStatusListener((status){
@@ -61,15 +82,15 @@ class _CoinState extends State<Coin> with SingleTickerProviderStateMixin{
       //moves between forwards and back
       if(status == AnimationStatus.forward)
       {
-          Flip();
+          Flip(false);
       }
 
     });
 
     controller.addListener((){
       setState(() {
-        print(controller.value);
-        print(animation.value);
+//        print(controller.value);
+//        print(animation.value);
       });
     });
   }
@@ -91,20 +112,26 @@ class _CoinState extends State<Coin> with SingleTickerProviderStateMixin{
             Expanded(
               flex: 4,
               child: Transform(
-                  transform: Matrix4.rotationX(
-                      1.5-(animation.value*1.5)
-                  )..translate(
-                      0.0,(animation.value*100.0)-100.0
-                  ),
+                  transform: Matrix4.rotationX(1.5-(animation.value*1.5))..translate(0.0,(animation.value*150.0)-125.0),
                   child: Icon(
-                    Coin[value],
+                    coin[value],
                     size: 250,
                     color: Theme.of(context).iconTheme.color.withOpacity(animation.value.clamp(0.0,1.0) ),
                   )
               ),
               ),
-            SizedBox(
-              height: 25.0,
+            Padding(
+              padding: EdgeInsets.symmetric(vertical: 10.0,horizontal: 0.0),
+              child: Container(
+                height: 50.0,
+                child: Opacity(
+                  opacity: sin(animation.value),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: historyList,
+                  ),
+                )
+              ),
             ),
             ActionButton(controller: controller,text: 'Flip',),
           ],
@@ -112,7 +139,4 @@ class _CoinState extends State<Coin> with SingleTickerProviderStateMixin{
       );
   }
 }
-
-
-
 

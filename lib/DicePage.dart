@@ -31,12 +31,31 @@ class _DiceState extends State<Dice> with SingleTickerProviderStateMixin{
     MdiIcons.dice6,
   ] ;
 
+  List<Widget> historyList = [];
   double initRotate = 0.0;
 
-  void Roll()
+  void Roll(bool first)
   {
     var rng = new Random();
     setState(() {
+
+      if (!first)
+      {
+        historyList.add(
+            Icon(
+              Dice[value],
+              size: 50.0,
+              color: Theme.of(context).iconTheme.color.withOpacity(0.125),
+            )
+        );
+
+        if (historyList.length > 7)
+        {
+          historyList.removeAt(0);
+        }
+      }
+      print(historyList);
+
       value = rng.nextInt(6);
       initRotate = (rng.nextDouble()*5.0) - 2.5;
       print('initRotate $initRotate');
@@ -60,7 +79,7 @@ class _DiceState extends State<Dice> with SingleTickerProviderStateMixin{
     animEase = CurvedAnimation(parent: controller,curve: Curves.ease);
     animBounce = CurvedAnimation(parent: controller,curve: Curves.bounceOut);
 
-    Roll();
+    Roll(true);
     controller.forward(from: 0);
 //    controller.reverse(from: 1);
 
@@ -70,7 +89,7 @@ class _DiceState extends State<Dice> with SingleTickerProviderStateMixin{
 
       if(status == AnimationStatus.forward)
       {
-        Roll();
+        Roll(false);
       }
 
     });
@@ -101,7 +120,7 @@ class _DiceState extends State<Dice> with SingleTickerProviderStateMixin{
           Expanded(
             flex: 4,
             child: Transform.translate(
-                offset: Offset(0.0,(animBounce.value*150.0)-150.0),
+                offset: Offset(0.0,(animBounce.value*150.0)-125.0),
                 child: Transform.rotate(
                   angle: (animBounce.value*initRotate)-initRotate,
                   origin: Offset(0.0,0.0),
@@ -113,8 +132,18 @@ class _DiceState extends State<Dice> with SingleTickerProviderStateMixin{
                 )
             ),
           ),
-          SizedBox(
-            height: 25.0,
+          Padding(
+            padding: EdgeInsets.symmetric(vertical: 10.0,horizontal: 0.0),
+            child: Container(
+                height: 50.0,
+                child: Opacity(
+                  opacity: sin(animEase.value),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: historyList,
+                  ),
+                )
+            ),
           ),
           ActionButton(controller: controller,text: 'Roll',),
         ],
