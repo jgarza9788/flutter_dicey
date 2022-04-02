@@ -4,23 +4,19 @@ import 'dart:math';
 import 'constants.dart';
 import 'themes.dart';
 
-class CoinPage extends StatelessWidget {
+
+
+class CoinPage extends StatefulWidget {
   const CoinPage({
     Key key,
   }) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    return Coin();
-  }
+  _CoinPageState createState() => _CoinPageState();
 }
 
-class Coin extends StatefulWidget {
-  @override
-  _CoinState createState() => _CoinState();
-}
+class _CoinPageState extends State<CoinPage> with SingleTickerProviderStateMixin{
 
-class _CoinState extends State<Coin> with SingleTickerProviderStateMixin{
 
   int value = 0;
   List<IconData> coin = [
@@ -28,6 +24,7 @@ class _CoinState extends State<Coin> with SingleTickerProviderStateMixin{
     MdiIcons.alphaTCircle
   ] ;
 
+  List<int> hist = [];
   List<Widget> historyList = [];
 
   void Flip(bool first)
@@ -35,23 +32,26 @@ class _CoinState extends State<Coin> with SingleTickerProviderStateMixin{
     var rng = new Random();
     setState(() {
 
-      if (!first)
+      if(!first)
       {
-        historyList.add(
-            Icon(
-              coin[value],
-              size: 50.0,
-              color: Theme.of(context).iconTheme.color.withOpacity(0.125),
-            )
-        );
-
-        if (historyList.length > 7)
+        hist.add(value);
+        if(hist.length>7)
         {
-          historyList.removeAt(0);
+         hist.removeAt(0);
+        }
+
+        historyList.clear();
+        for (int i = 0 ;i < hist.length;i++)
+        {
+          historyList.add(
+              Icon(
+                coin[hist[i]],
+                size: 50.0,
+                color: Theme.of(context).iconTheme.color.withOpacity( pow(i/hist.length,2) + 0.1 ),
+              )
+          );
         }
       }
-      print(historyList);
-
 
       value = rng.nextInt(2);
     });
@@ -94,6 +94,8 @@ class _CoinState extends State<Coin> with SingleTickerProviderStateMixin{
       });
     });
   }
+
+
 
   @override
   void dispose() {

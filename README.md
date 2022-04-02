@@ -58,3 +58,5 @@ this file contains the settings page for the app.
 ### themes.dart
 this file contains all the different themes.
 
+## known Issues
+* history color doesn't update right away.

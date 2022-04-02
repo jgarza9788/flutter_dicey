@@ -14,6 +14,13 @@ class Settings extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
 //        backgroundColor: Colors.purple,
+      leading: IconButton(
+        icon: Icon(Icons.arrow_back),
+        color: Theme.of(context).textTheme.title.color,
+        onPressed: (){
+          Navigator.pop(context,true);
+        },
+      ),
         title: Text('Settings'),
       ),
       body: ListView(

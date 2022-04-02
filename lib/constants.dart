@@ -6,6 +6,7 @@ import 'DicePage.dart';
 import 'D20Page.dart';
 
 const kTabPages = <Widget>[
+//  CoinPage(),
   CoinPage(),
   DicePage(),
   D20Page(),

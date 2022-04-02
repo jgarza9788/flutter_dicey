@@ -3,23 +3,19 @@ import 'package:material_design_icons_flutter/material_design_icons_flutter.dart
 import 'dart:math';
 import 'constants.dart';
 
-class D20Page extends StatelessWidget {
+
+
+class D20Page extends StatefulWidget {
   const D20Page({
     Key key,
   }) : super(key: key);
 
+
   @override
-  Widget build(BuildContext context) {
-    return D20();
-  }
+  _D20PageState createState() => _D20PageState();
 }
 
-class D20 extends StatefulWidget {
-  @override
-  _D20State createState() => _D20State();
-}
-
-class _D20State extends State<D20> with SingleTickerProviderStateMixin{
+class _D20PageState extends State<D20Page> with SingleTickerProviderStateMixin{
 
   int value = 0;
   List<String> D20 =[
@@ -45,6 +41,7 @@ class _D20State extends State<D20> with SingleTickerProviderStateMixin{
     'images/D20_20.png',
   ];
 
+  List<int> hist = [];
   List<Widget> historyList = [];
   double initRotate = 0.0;
 
@@ -53,21 +50,24 @@ class _D20State extends State<D20> with SingleTickerProviderStateMixin{
     var rng = new Random();
     setState(() {
 
-      if (!first)
+      if(!first)
       {
-        historyList.add(
-        Image.asset(
-          D20[value],
-          color: Theme.of(context).iconTheme.color.withOpacity(0.125)
-        )
-        );
-
-        if (historyList.length > 7)
+        hist.add(value);
+        if(hist.length>7)
         {
-          historyList.removeAt(0);
+          hist.removeAt(0);
+        }
+
+        historyList.clear();
+        for (int i = 0 ;i < hist.length;i++)
+        {
+          historyList.add(
+            Image.asset(D20[hist[i]],
+                color: Theme.of(context).iconTheme.color.withOpacity( pow(i/hist.length,2) + 0.1 ),
+            ),
+          );
         }
       }
-      print(historyList);
 
       value = rng.nextInt(20);
       initRotate = (rng.nextDouble()*5.0) - 2.5;

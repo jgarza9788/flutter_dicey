@@ -1,23 +1,30 @@
-import 'dart:io';
 
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dicey/CoinPage.dart';
+import 'package:flutter_dicey/DicePage.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'constants.dart';
-import 'themes.dart';
 import 'settings.dart';
-import 'package:flutter/scheduler.dart';
 
 class Home extends StatelessWidget {
   static String id = 'home';
 
+  Home({this.result});
+
+  final result;
+
   @override
   Widget build(BuildContext context) {
-    return HomeContent();
+    return HomeContent(result: result,);
   }
 }
 
 class HomeContent extends StatefulWidget {
+  static String id = 'home';
+  HomeContent({this.result});
+
+  final result;
+
   @override
   _HomeContentState createState() => _HomeContentState();
 }
@@ -30,10 +37,12 @@ class _HomeContentState extends State<HomeContent> with SingleTickerProviderStat
   void initState() {
     // TODO: implement initState
     super.initState();
+
     _tabController = TabController(
       length: kTabPages.length,
       vsync: this,
     );
+
   }
 
   @override

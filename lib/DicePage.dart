@@ -3,23 +3,18 @@ import 'package:material_design_icons_flutter/material_design_icons_flutter.dart
 import 'dart:math';
 import 'constants.dart';
 
-class DicePage extends StatelessWidget {
+
+
+class DicePage extends StatefulWidget {
   const DicePage({
     Key key,
   }) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    return Dice();
-  }
+  _DicePageState createState() => _DicePageState();
 }
 
-class Dice extends StatefulWidget {
-  @override
-  _DiceState createState() => _DiceState();
-}
-
-class _DiceState extends State<Dice> with SingleTickerProviderStateMixin{
+class _DicePageState extends State<DicePage> with SingleTickerProviderStateMixin{
 
   int value = 0;
   List<IconData> Dice = [
@@ -31,6 +26,7 @@ class _DiceState extends State<Dice> with SingleTickerProviderStateMixin{
     MdiIcons.dice6,
   ] ;
 
+  List<int> hist = [];
   List<Widget> historyList = [];
   double initRotate = 0.0;
 
@@ -39,22 +35,26 @@ class _DiceState extends State<Dice> with SingleTickerProviderStateMixin{
     var rng = new Random();
     setState(() {
 
-      if (!first)
+      if(!first)
       {
-        historyList.add(
-            Icon(
-              Dice[value],
-              size: 50.0,
-              color: Theme.of(context).iconTheme.color.withOpacity(0.125),
-            )
-        );
-
-        if (historyList.length > 7)
+        hist.add(value);
+        if(hist.length>7)
         {
-          historyList.removeAt(0);
+          hist.removeAt(0);
+        }
+
+        historyList.clear();
+        for (int i = 0 ;i < hist.length;i++)
+        {
+          historyList.add(
+              Icon(
+                Dice[hist[i]],
+                size: 50.0,
+                color: Theme.of(context).iconTheme.color.withOpacity( pow(i/hist.length,2) + 0.1 ),
+              )
+          );
         }
       }
-      print(historyList);
 
       value = rng.nextInt(6);
       initRotate = (rng.nextDouble()*5.0) - 2.5;
