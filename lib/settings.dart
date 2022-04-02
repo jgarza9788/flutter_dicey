@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:dynamic_theme/dynamic_theme.dart';
-import 'themes.dart';
-import 'constants.dart';
+
+import 'package:dice/themes.dart';
+import 'package:dice/constants.dart';
 
 
 
@@ -26,57 +26,127 @@ class Settings extends StatelessWidget {
       body: ListView(
         children: <Widget>[
           ThemeButton(
-            themeName: 'DarkMode',
-            colors: [Colors.blue,Colors.grey[900],Colors.white],
-            setTheme: (){
-              DynamicTheme.of(context).setThemeData(darkMode());
-              saveTheme('darkMode');
+            themeName: currentTheme.themeNames[0],
+            // colors: [Colors.blue,Colors.grey[900],Colors.white],
+            colors: [
+              currentTheme.themelist[0].canvasColor,
+              currentTheme.themelist[0].accentColor,
+              currentTheme.themelist[0].primaryColor,
+            ],
+            onTap: (){
+              currentTheme.setTheme(0);
+              Navigator.pop(context,true);
             },
           ),
           ThemeButton(
-            themeName: 'Red And Dark',
-            colors: [Colors.red,Colors.grey[900],Colors.grey[700]],
-            setTheme: (){
-              DynamicTheme.of(context).setThemeData(redAndDark());
-              saveTheme('redAndDark');
+            themeName: currentTheme.themeNames[1],
+            // colors: [Colors.blue,Colors.grey[900],Colors.white],
+            colors: [
+              currentTheme.themelist[1].canvasColor,
+              currentTheme.themelist[1].accentColor,
+              currentTheme.themelist[1].primaryColor,
+            ],
+            onTap: (){
+              currentTheme.setTheme(1);
+              Navigator.pop(context,true);
             },
           ),
           ThemeButton(
-            themeName: 'Blue And Dark',
-            colors: [Colors.blue,Colors.grey[900],Colors.grey[700]],
-            setTheme: (){
-              DynamicTheme.of(context).setThemeData(blueAndDark());
-              saveTheme('blueAndDark');
+            themeName: currentTheme.themeNames[2],
+            colors: [
+              currentTheme.themelist[2].canvasColor,
+              currentTheme.themelist[2].accentColor,
+              currentTheme.themelist[2].primaryColor,
+            ],
+            onTap: (){
+              currentTheme.setTheme(2);
+              Navigator.pop(context,true);
             },
           ),
+
           ThemeButton(
-            themeName: 'Toxic',
-            colors: [Colors.lightGreen,Colors.lightGreenAccent,Colors.grey[900]],
-            setTheme: (){
-              DynamicTheme.of(context).setThemeData(toxic());
-              saveTheme('toxic');
+            themeName: currentTheme.themeNames[3],
+            colors: [
+              currentTheme.themelist[3].canvasColor,
+              currentTheme.themelist[3].accentColor,
+              currentTheme.themelist[3].primaryColor,
+            ],
+            onTap: (){
+              currentTheme.setTheme(3);
+              Navigator.pop(context,true);
             },
           ),
+
           ThemeButton(
-            themeName: 'Blue-Steel',
-            colors: [Colors.blueGrey[900],Colors.blueGrey,Colors.grey[300]],
-            setTheme: (){
-              DynamicTheme.of(context).setThemeData(blueSteel());
-              saveTheme('blueSteel');
+            themeName: currentTheme.themeNames[4],
+            colors: [
+              currentTheme.themelist[4].canvasColor,
+              currentTheme.themelist[4].accentColor,
+              currentTheme.themelist[4].primaryColor,
+            ],
+            onTap: (){
+              currentTheme.setTheme(4);
+              Navigator.pop(context,true);
             },
           ),
+
           ThemeButton(
-            themeName: 'Purple Rain',
-            colors: [Colors.deepPurple[900],Colors.deepPurpleAccent,Colors.deepPurple[100]],
-            setTheme: (){
-              DynamicTheme.of(context).setThemeData(purpleRain());
-              saveTheme('purpleRain');
+            themeName: currentTheme.themeNames[5],
+            // colors: [Colors.blue,Colors.grey[900],Colors.white],
+            colors: [
+              currentTheme.themelist[5].canvasColor,
+              currentTheme.themelist[5].accentColor,
+              currentTheme.themelist[5].primaryColor,
+            ],
+            onTap: (){
+              currentTheme.setTheme(5);
+              Navigator.pop(context,true);
             },
           ),
+          // ThemeButton(
+          //   themeName: 'Red And Dark',
+          //   colors: [Colors.red,Colors.grey[900],Colors.grey[700]],
+          //   onTap: (){
+          //     currentTheme.setTheme(1);
+          //   },
+          // ),
+          // ThemeButton(
+          //   themeName: 'Blue And Dark',
+          //   colors: [Colors.blue,Colors.grey[900],Colors.grey[700]],
+          //   // setTheme: (){
+          //   //   DynamicTheme.of(context).setThemeData(blueAndDark());
+          //   //   saveTheme('blueAndDark');
+          //   // },
+          // ),
+          // ThemeButton(
+          //   themeName: 'Toxic',
+          //   colors: [Colors.lightGreen,Colors.lightGreenAccent,Colors.grey[900]],
+          //   // setTheme: (){
+          //   //   DynamicTheme.of(context).setThemeData(toxic());
+          //   //   saveTheme('toxic');
+          //   // },
+          // ),
+          // ThemeButton(
+          //   themeName: 'Blue-Steel',
+          //   colors: [Colors.blueGrey[900],Colors.blueGrey,Colors.grey[300]],
+          //   // setTheme: (){
+          //   //   DynamicTheme.of(context).setThemeData(blueSteel());
+          //   //   saveTheme('blueSteel');
+          //   // },
+          // ),
+          // ThemeButton(
+          //   themeName: 'Purple Rain',
+          //   colors: [Colors.deepPurple[900],Colors.deepPurpleAccent,Colors.deepPurple[100]],
+          //   // setTheme: (){
+          //   //   DynamicTheme.of(context).setThemeData(purpleRain());
+          //   //   saveTheme('purpleRain');
+          //   // },
+          // ),
         ],
       )
     );
   }
 }
+
 
 

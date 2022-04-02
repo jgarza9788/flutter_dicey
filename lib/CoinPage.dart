@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+// import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:mdi/mdi.dart';
 import 'dart:math';
 import 'constants.dart';
-import 'themes.dart';
+// import 'themes.dart';
+
 
 
 
@@ -20,8 +22,8 @@ class _CoinPageState extends State<CoinPage> with SingleTickerProviderStateMixin
 
   int value = 0;
   List<IconData> coin = [
-    MdiIcons.alphaHCircle,
-    MdiIcons.alphaTCircle
+    Mdi.alphaHCircle,
+    Mdi.alphaTCircle
   ] ;
 
   List<int> hist = [];
@@ -47,7 +49,9 @@ class _CoinPageState extends State<CoinPage> with SingleTickerProviderStateMixin
               Icon(
                 coin[hist[i]],
                 size: 50.0,
+                // color: Theme.of(context).iconTheme.color.withOpacity( pow(i/hist.length,1.5) + 0.1 ),
                 color: Theme.of(context).iconTheme.color.withOpacity( pow(i/hist.length,2) + 0.1 ),
+                // color: Theme.of(context).iconTheme.color.withOpacity( pow(i/hist.length,4) + 0.25 ),
               )
           );
         }

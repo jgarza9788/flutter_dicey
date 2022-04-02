@@ -1,249 +1,268 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:dynamic_theme/dynamic_theme.dart';
 
-saveTheme(themeName) async {
-  SharedPreferences prefs = await SharedPreferences.getInstance();
-  print('theme: $themeName');
-  await prefs.setString('themeName', themeName);
-}
+CustomTheme currentTheme = CustomTheme();
 
-Future<String> getStrTheme() async{
-  SharedPreferences prefs = await SharedPreferences.getInstance();
-  String themeName = prefs.getString('themeName');
-  print('theme: $themeName');
-  return themeName;
-}
+class CustomTheme with ChangeNotifier {
 
-ThemeData getTheme(themeName){
+  static int index = 0 ;
 
-    if (themeName == 'redAndDark')
-    {
-//      DynamicTheme.of(context).setThemeData(redAndDark());
-  return redAndDark();
-    }
-  else if (themeName == 'blueAndDark')
-    {
-//      DynamicTheme.of(context).setThemeData(blueAndDark());
-      return blueAndDark();
-    }
-  else if (themeName == 'toxic')
-  {
-//    DynamicTheme.of(context).setThemeData(toxic());
-  return toxic();
+  List<String> themeNames = [
+    'Dark',
+    'Red',
+    'Blue',
+    'Toxic',
+    'Blue Steal',
+    'Purple Rain',
+  ];
+
+  List<ThemeData> themelist = <ThemeData>[
+    darkTheme, //0
+    redTheme, //1
+    blueTheme, //2
+    toxicTheme, //3
+    blueSteelTheme, //4
+    purpleRainTheme //5
+  ];
+  ThemeData get currentTheme => themelist[index % themelist.length];
+
+  void toggleTheme() {
+    // _isDarkTheme = !_isDarkTheme;
+    index += 1;
+    notifyListeners();
   }
-  else if (themeName == 'blueSteel')
-  {
-//    DynamicTheme.of(context).setThemeData(blueSteel());
-  return blueAndDark();
+
+  void setTheme(int i){
+    index = i;
+    notifyListeners();
+    _save_theme(i);
   }
-  else if (themeName == 'purpleRain')
-  {
-//    DynamicTheme.of(context).setThemeData(purpleRain());
-  return purpleRain();
+
+  // @override
+  // void initState() {
+  //   getTheme();
+  // }
+
+  void getTheme() async {
+    // print(_load_theme().toString());
+    index = await _load_theme();
+    print(index.toString());
+    notifyListeners();
   }
-  else
-  {
-//    DynamicTheme.of(context).setThemeData(darkMode());
-  return darkMode();
+
+  _save_theme(int i) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setInt('theme_index', i);
   }
-}
+
+  _load_theme() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.getInt('theme_index') ?? 0;
+  }
 
 
-ThemeData darkMode() {
-  return ThemeData.dark().copyWith(
-    indicatorColor: Colors.blue,
-  );
-}
+  static ThemeData get darkTheme {
+    return ThemeData.dark().copyWith(
+      accentColor: Colors.blueAccent,
+    );
+  }
 
-ThemeData redAndDark() {
-  return ThemeData.dark().copyWith(
-    primaryColor: Colors.red,
-    accentColor: Colors.black,
-    canvasColor: Colors.grey[900],
-    backgroundColor: Colors.grey[900],
-    buttonTheme: ButtonThemeData(
-      buttonColor: Colors.red,
-      shape: RoundedRectangleBorder(),
-    ),
-    primaryTextTheme: TextTheme(
-      title: TextStyle(color: Colors.black,fontSize: 50.0,fontWeight:FontWeight.bold),
-    ),
-    indicatorColor: Colors.redAccent,
-    iconTheme: IconThemeData(
-      color: Colors.grey[600]
-    ),
-    tabBarTheme: TabBarTheme(
-      labelColor: Colors.red,
-      unselectedLabelColor: Colors.grey[700],
-    ),
-    appBarTheme: AppBarTheme().copyWith(
-      textTheme: TextTheme().copyWith(
-        title: TextStyle(color: Colors.black,fontSize: 24.0,fontWeight:FontWeight.bold),
+  static ThemeData get redTheme {
+    return ThemeData.dark().copyWith(
+      primaryColor: Colors.red,
+      accentColor: Colors.black,
+      canvasColor: Colors.grey[900],
+      backgroundColor: Colors.grey[900],
+      buttonTheme: ButtonThemeData(
+        buttonColor: Colors.red,
+        shape: RoundedRectangleBorder(),
       ),
-      iconTheme: IconThemeData().copyWith(
-        color: Colors.black,
+      primaryTextTheme: TextTheme(
+        title: TextStyle(color: Colors.black,
+            fontWeight:FontWeight.bold
+        ),
       ),
-    ),
-    textTheme: TextTheme().copyWith(
-      body1: TextStyle(
-          fontSize: 24.0
+      indicatorColor: Colors.redAccent,
+      iconTheme: IconThemeData(
+          color: Colors.grey[600]
       ),
-    ),
-);
-}
+      tabBarTheme: TabBarTheme(
+        labelColor: Colors.red,
+        unselectedLabelColor: Colors.grey[700],
+      ),
+      appBarTheme: AppBarTheme().copyWith(
+        textTheme: TextTheme().copyWith(
+          title: TextStyle(
+              color: Colors.black,
+              fontWeight:FontWeight.bold,
+              fontSize: 23,
+          ),
+        ),
+        iconTheme: IconThemeData().copyWith(
+          color: Colors.black,
+        ),
+      ),
+    );
+  }
 
-ThemeData blueAndDark() {
-  return ThemeData.dark().copyWith(
-    primaryColor: Colors.blue,
-    accentColor: Colors.black,
-    canvasColor: Colors.grey[900],
-    backgroundColor: Colors.grey[900],
-    buttonTheme: ButtonThemeData(
-      buttonColor: Colors.blue,
-      shape: RoundedRectangleBorder(),
-    ),
-    primaryTextTheme: TextTheme(
-      title: TextStyle(color: Colors.black,fontSize: 50.0,fontWeight:FontWeight.bold),
-    ),
-    indicatorColor: Colors.blueAccent,
-    iconTheme: IconThemeData(
-        color: Colors.grey[600]
-    ),
-    tabBarTheme: TabBarTheme(
-      labelColor: Colors.blue,
-      unselectedLabelColor: Colors.grey[700],
-    ),
-    appBarTheme: AppBarTheme().copyWith(
-      textTheme: TextTheme().copyWith(
-        title: TextStyle(color: Colors.black,fontSize: 24.0,fontWeight:FontWeight.bold),
+  static ThemeData get blueTheme {
+    return ThemeData.dark().copyWith(
+      primaryColor: Colors.blue,
+      accentColor: Colors.black,
+      canvasColor: Colors.grey[900],
+      backgroundColor: Colors.grey[900],
+      buttonTheme: ButtonThemeData(
+        buttonColor: Colors.blue,
+        shape: RoundedRectangleBorder(),
       ),
-      iconTheme: IconThemeData().copyWith(
-        color: Colors.black,
+      primaryTextTheme: TextTheme(
+        title: TextStyle(
+            color: Colors.black,
+            fontWeight:FontWeight.bold
+        ),
       ),
-    ),
-    textTheme: TextTheme().copyWith(
-      body1: TextStyle(
-          fontSize: 24.0
+      indicatorColor: Colors.blueAccent,
+      iconTheme: IconThemeData(
+          color: Colors.grey[600]
       ),
-    ),
-  );
-}
+      tabBarTheme: TabBarTheme(
+        labelColor: Colors.blue,
+        unselectedLabelColor: Colors.grey[700],
+      ),
+      appBarTheme: AppBarTheme().copyWith(
+        textTheme: TextTheme().copyWith(
+          title: TextStyle(
+              color: Colors.black,
+              fontWeight:FontWeight.bold,
+              fontSize: 23,
+          ),
+        ),
+        iconTheme: IconThemeData().copyWith(
+          color: Colors.black,
+        ),
+      ),
+    );
+  }
 
-ThemeData toxic() {
-  return ThemeData.dark().copyWith(
-    primaryColor: Colors.lightGreen,
-    accentColor: Colors.black,
-    canvasColor: Colors.grey[900],
-    backgroundColor: Colors.grey[900],
-    buttonTheme: ButtonThemeData(
-      buttonColor: Colors.lightGreen,
-      shape: RoundedRectangleBorder(),
-    ),
-    primaryTextTheme: TextTheme(
-      title: TextStyle(color: Colors.black,fontSize: 50.0,fontWeight:FontWeight.bold),
-    ),
-    indicatorColor: Colors.lightGreenAccent,
-    iconTheme: IconThemeData(
-        color: Colors.grey[600]
-    ),
-    tabBarTheme: TabBarTheme(
-      labelColor: Colors.lightGreen,
-      unselectedLabelColor: Colors.grey[700],
-    ),
-    appBarTheme: AppBarTheme().copyWith(
-      textTheme: TextTheme().copyWith(
-        title: TextStyle(color: Colors.black,fontSize: 24.0,fontWeight:FontWeight.bold),
+  static ThemeData get toxicTheme {
+    return ThemeData.dark().copyWith(
+      primaryColor: Colors.lightGreen,
+      accentColor: Colors.black,
+      canvasColor: Colors.grey[900],
+      backgroundColor: Colors.grey[900],
+      buttonTheme: ButtonThemeData(
+        buttonColor: Colors.lightGreen,
+        shape: RoundedRectangleBorder(),
       ),
-      iconTheme: IconThemeData().copyWith(
-        color: Colors.black,
+      primaryTextTheme: TextTheme(
+        title: TextStyle(
+            color: Colors.black,
+            fontWeight:FontWeight.bold
+        ),
       ),
-    ),
-    textTheme: TextTheme().copyWith(
-      body1: TextStyle(
-          fontSize: 24.0
+      indicatorColor: Colors.lightGreenAccent,
+      iconTheme: IconThemeData(
+          color: Colors.grey[600]
       ),
-    ),
-  );
-}
+      tabBarTheme: TabBarTheme(
+        labelColor: Colors.lightGreen,
+        unselectedLabelColor: Colors.grey[700],
+      ),
+      appBarTheme: AppBarTheme().copyWith(
+        textTheme: TextTheme().copyWith(
+          title: TextStyle(
+              color: Colors.black,
+              fontWeight:FontWeight.bold,
+              fontSize: 23,
+          ),
+        ),
+        iconTheme: IconThemeData().copyWith(
+          color: Colors.black,
+        ),
+      ),
+    );
+  }
 
-
-ThemeData blueSteel() {
-  return ThemeData.light().copyWith(
-    primaryColor: Colors.blueGrey[700],
-    accentColor: Colors.black,
-    canvasColor: Colors.blueGrey[900],
-    backgroundColor: Colors.grey[900],
-    buttonTheme: ButtonThemeData(
-      buttonColor: Colors.blueGrey[900],
-      shape: RoundedRectangleBorder(),
-    ),
-    primaryTextTheme: TextTheme(
-      title: TextStyle(color: Colors.grey,fontSize: 50.0,fontWeight:FontWeight.bold),
-    ),
-    indicatorColor: Colors.blueGrey,
-    iconTheme: IconThemeData(
-        color: Colors.blueGrey[500]
-    ),
-    tabBarTheme: TabBarTheme(
-      labelColor: Colors.blueGrey,
-      unselectedLabelColor: Colors.grey[700],
-    ),
-    appBarTheme: AppBarTheme().copyWith(
-      textTheme: TextTheme().copyWith(
-        title: TextStyle(color: Colors.grey,fontSize: 20.0,fontWeight:FontWeight.bold),
+  static ThemeData get blueSteelTheme {
+    return ThemeData.light().copyWith(
+      primaryColor: Colors.blueGrey[700],
+      accentColor: Colors.black,
+      canvasColor: Colors.blueGrey[900],
+      backgroundColor: Colors.grey[900],
+      buttonTheme: ButtonThemeData(
+        buttonColor: Colors.blueGrey[900],
+        shape: RoundedRectangleBorder(),
       ),
-      iconTheme: IconThemeData().copyWith(
-        color: Colors.grey,
+      primaryTextTheme: TextTheme(
+        title: TextStyle(
+            color: Colors.grey,
+            fontWeight:FontWeight.bold
+        ),
       ),
-    ),
-    textTheme: TextTheme().copyWith(
-      body1: TextStyle(
-          fontSize: 24.0
+      indicatorColor: Colors.blueGrey,
+      iconTheme: IconThemeData(
+          color: Colors.blueGrey[500]
       ),
-    ),
-  );
-}
+      tabBarTheme: TabBarTheme(
+        labelColor: Colors.blueGrey,
+        unselectedLabelColor: Colors.grey[700],
+      ),
+      appBarTheme: AppBarTheme().copyWith(
+        textTheme: TextTheme().copyWith(
+          title: TextStyle(
+            color: Colors.grey,
+            fontWeight:FontWeight.bold,
+            fontSize: 23,
+          ),
+        ),
+        iconTheme: IconThemeData().copyWith(
+          color: Colors.grey,
+        ),
+      ),
+    );
+  }
 
-
-ThemeData purpleRain() {
-  return ThemeData.light().copyWith(
-    primaryColor: Colors.deepPurple,
-    accentColor: Colors.deepPurple,
-    canvasColor: Colors.deepPurple[200],
-    backgroundColor: Colors.deepPurple,
-    splashColor: Colors.deepPurple[900],
-    scaffoldBackgroundColor: Colors.deepPurple[200],
-    buttonTheme: ButtonThemeData(
-      buttonColor: Colors.deepPurple[900],
-      splashColor: Colors.deepPurpleAccent[100],
-      shape: RoundedRectangleBorder(),
-    ),
-    primaryTextTheme: TextTheme(
-      title: TextStyle(color: Colors.grey[200],fontSize: 50.0,fontWeight:FontWeight.bold),
-    ),
-    indicatorColor: Colors.deepPurpleAccent,
-    iconTheme: IconThemeData(
+  static ThemeData get purpleRainTheme {
+    return ThemeData.light().copyWith(
+      primaryColor: Colors.deepPurple,
+      accentColor: Colors.purple[100],
+      canvasColor: Colors.deepPurple[200],
+      backgroundColor: Colors.deepPurple,
+      splashColor: Colors.deepPurple[900],
+      scaffoldBackgroundColor: Colors.deepPurple[200],
+      buttonTheme: ButtonThemeData(
+        buttonColor: Colors.deepPurple[900],
+        splashColor: Colors.deepPurpleAccent[100],
+        shape: RoundedRectangleBorder(),
+      ),
+      primaryTextTheme: TextTheme(
+        title: TextStyle(
+            color: Colors.grey[200],
+            fontWeight:FontWeight.bold),
+      ),
+      indicatorColor: Colors.deepPurpleAccent,
+      iconTheme: IconThemeData(
         color: Colors.deepPurple,
-    ),
-    tabBarTheme: TabBarTheme(
-      labelColor: Colors.deepPurple[900],
-      unselectedLabelColor: Colors.deepPurpleAccent[200],
-    ),
-    appBarTheme: AppBarTheme().copyWith(
-      textTheme: TextTheme().copyWith(
-        title: TextStyle(color: Colors.deepPurple[100],fontSize: 20.0,fontWeight:FontWeight.bold),
       ),
-      iconTheme: IconThemeData().copyWith(
-        color: Colors.deepPurple[100],
+      tabBarTheme: TabBarTheme(
+        labelColor: Colors.deepPurple[900],
+        unselectedLabelColor: Colors.deepPurpleAccent[200],
       ),
-    ),
-    textTheme: TextTheme().copyWith(
-      body1: TextStyle(
-          fontSize: 24.0
+      appBarTheme: AppBarTheme().copyWith(
+        textTheme: TextTheme().copyWith(
+          title: TextStyle(
+            color: Colors.deepPurple[100],
+            fontWeight:FontWeight.bold,
+            fontSize: 23,
+          ),
+        ),
+        iconTheme: IconThemeData().copyWith(
+          color: Colors.deepPurple[100],
+        ),
       ),
-    ),
-  );
+    );
+  }
+
+
+
 }
-
-

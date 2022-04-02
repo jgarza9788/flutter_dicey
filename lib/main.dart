@@ -1,50 +1,63 @@
 import 'package:flutter/material.dart';
-import 'home.dart';
-import 'settings.dart';
-import 'package:dynamic_theme/dynamic_theme.dart';
-import 'themes.dart';
-import 'dart:io';
+import 'package:dice/home.dart';
+import 'package:dice/themes.dart';
+import 'package:dice/settings.dart';
 
-void main() => runApp(MyApp());
-
-
-class MyApp extends StatefulWidget {
-  @override
-  _MyAppState createState() => _MyAppState();
+void main() {
+  runApp(MyApp());
 }
 
-class _MyAppState extends State<MyApp> {
-  String themeName = '';
-
-  getThemeName()async{
-    themeName = await getStrTheme();
-  }
-
+class MyApp extends StatelessWidget {
+  // This widget is the root of your application.
   @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-
-    getThemeName();
-  }
-
-  @override
-  Widget build(BuildContext context){
-    return DynamicTheme(
-        defaultBrightness: Brightness.light,
-        data: (brightness) => getTheme(themeName),//darkMode(),
-        themedWidgetBuilder: (context, theme) {
-          return new MaterialApp(
-              debugShowCheckedModeBanner: false,
-              theme: theme,
-              initialRoute: Home.id,
-              routes: {
-                Home.id: (context) => Home(),
-                Settings.id: (context) => Settings()
-              }
-          );
-        }
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: '',
+      home: MyHomePage(title: ''),
     );
   }
 }
 
+class MyHomePage extends StatefulWidget {
+  MyHomePage({Key key, this.title}) : super(key: key);
+
+  final String title;
+
+  @override
+  _MyHomePageState createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  int _counter = 0;
+
+  void _incrementCounter() {
+    setState(() {
+      _counter++;
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    currentTheme.addListener(() {
+      setState(() {});
+    });
+
+    currentTheme.getTheme();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+
+  return new MaterialApp(
+      debugShowCheckedModeBanner: false,
+      theme: currentTheme.currentTheme,
+      initialRoute: Home.id,
+      routes: {
+        Home.id: (context) => Home(),
+        Settings.id: (context) => Settings(),
+      }
+  );
+
+  }
+}

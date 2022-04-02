@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+// import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:mdi/mdi.dart';
 import 'dart:math';
 import 'constants.dart';
 
@@ -18,12 +19,12 @@ class _DicePageState extends State<DicePage> with SingleTickerProviderStateMixin
 
   int value = 0;
   List<IconData> Dice = [
-    MdiIcons.dice1,
-    MdiIcons.dice2,
-    MdiIcons.dice3,
-    MdiIcons.dice4,
-    MdiIcons.dice5,
-    MdiIcons.dice6,
+    Mdi.dice1,
+    Mdi.dice2,
+    Mdi.dice3,
+    Mdi.dice4,
+    Mdi.dice5,
+    Mdi.dice6,
   ] ;
 
   List<int> hist = [];

@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/flutter_dicey.iml" filepath="$PROJECT_DIR$/flutter_dicey.iml" />
-      <module fileurl="file://$PROJECT_DIR$/android/flutter_dicey_android.iml" filepath="$PROJECT_DIR$/android/flutter_dicey_android.iml" />
+      <module fileurl="file://$PROJECT_DIR$/dice.iml" filepath="$PROJECT_DIR$/dice.iml" />
+      <module fileurl="file://$PROJECT_DIR$/android/dice_android.iml" filepath="$PROJECT_DIR$/android/dice_android.iml" />
     </modules>
   </component>
 </project>

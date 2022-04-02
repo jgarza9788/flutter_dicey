@@ -1,32 +1,118 @@
 import 'package:flutter/material.dart';
-import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
-
-import 'package:flutter_dicey/CoinPage.dart';
-import 'DicePage.dart';
+import 'package:mdi/mdi.dart';
+import 'package:dice/CoinPage.dart';
+import 'package:dice/DicePage.dart';
 import 'D20Page.dart';
 
+
 const kTabPages = <Widget>[
-//  CoinPage(),
+
   CoinPage(),
   DicePage(),
   D20Page(),
+
 ];
 
 
 const kTabs = <Widget>[
-Tab(
-    icon: Icon(MdiIcons.coin,size: 40.0,),
-    text: 'Coin',
-  ),
-Tab(
-  icon: Icon(MdiIcons.dice5,size: 40.0,),
-  text: 'Dice',
+custTab(
+  icon: Icon(Mdi.alphaHCircle,size: 30.0,),
+  text: 'Coin',
 ),
-Tab(
-  icon: Icon(MdiIcons.diceD20,size: 40.0,),
-  text: 'D20',
+custTab(
+  icon: Icon(Mdi.dice5,size: 30.0,),
+  text: 'Coin',
 ),
+custTab(
+  icon: Icon(Mdi.diceD20,size: 30.0,),
+  text: 'Coin',
+),
+
+// Tab(
+//     icon: Icon(Mdi.alphaHCircle,size: 30.0,),
+//     text: 'Coin',
+// ),
+// Tab(
+//   icon: Icon(Mdi.dice5,size: 30.0,),
+//   text: 'Dice',
+// ),
+// Tab(
+//   icon: Icon(Mdi.diceD20,size: 30.0,),
+//   text: 'D20',
+// ),
 ];
+
+class custTab extends StatelessWidget {
+  const custTab({
+    Key key,
+    this.icon = const Icon(Mdi.circle,size: 30.0,),
+    this.text = '',
+  }) : super(key: key);
+
+  final Icon icon;
+  final String text;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 60,
+      child:Tab(
+      child:Stack(
+          alignment: AlignmentDirectional.center,
+          clipBehavior: Clip.none,
+          // fix: StackFit.loose,
+          children: [
+            Positioned(
+                top: 10.0,
+                // right: 0.0,
+                child: icon
+            ),
+            Positioned(
+              top: 40.0,
+              // right: 0.0,
+              child: Text(text),
+            ),
+
+          ],
+        )
+    ),
+    );
+
+    // return Stack(
+    //   alignment: AlignmentDirectional.center,
+    //   clipBehavior: Clip.none,
+    //   // fix: StackFit.loose,
+    //   children: [
+    //     Positioned(
+    //         child: icon
+    //     ),
+    //     Positioned(
+    //       top: 30.0,
+    //       right: 0.0,
+    //       child: Text(text),
+    //     ),
+    //
+    //     // Icon(Mdi.alphaHCircle,size: 30.0,),
+    //     // Positioned(
+    //       // height: 50.0,
+    //       // alignment: Alignment.center,
+    //       // right: 250.0,
+    //       // child:
+    //
+    //     // )
+    //   ],
+    // );
+
+    // return Column(
+    //   mainAxisAlignment: MainAxisAlignment.end,
+    //   crossAxisAlignment: CrossAxisAlignment.center,
+    //   children: [
+    //     icon,
+    //     Text(text),
+    //   ],
+    // );
+  }
+}
 
 
 
@@ -70,12 +156,12 @@ class ThemeButton extends StatelessWidget {
     Key key,
     this.themeName,
     this.colors,
-    this.setTheme,
+    this.onTap,
   }) : super(key: key);
 
   final String themeName;
   final List<Color> colors;
-  final Function setTheme;
+  final Function onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -100,7 +186,7 @@ class ThemeButton extends StatelessWidget {
                 ThemePreview(colors: colors,),
               ],
             ),
-            onPressed: setTheme,
+            onPressed: onTap,
             elevation: 6.0,
             shape: RoundedRectangleBorder(borderRadius: new BorderRadius.circular(10.0))
         ),

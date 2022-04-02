@@ -1,10 +1,12 @@
 
 import 'package:flutter/material.dart';
-import 'package:flutter_dicey/CoinPage.dart';
-import 'package:flutter_dicey/DicePage.dart';
-import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+// import 'package:flutter_dicey/CoinPage.dart';
+// import 'package:flutter_dicey/DicePage.dart';
+// import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:mdi/mdi.dart';
 import 'constants.dart';
 import 'settings.dart';
+
 
 class Home extends StatelessWidget {
   static String id = 'home';
@@ -59,7 +61,7 @@ class _HomeContentState extends State<HomeContent> with SingleTickerProviderStat
         title: Text('Dicey'),
         actions: <Widget>[
           IconButton(
-              icon: Icon(MdiIcons.settings,
+              icon: Icon(Mdi.cog,
               ),
               onPressed: () {
                 Navigator.pushNamed(context, Settings.id);
