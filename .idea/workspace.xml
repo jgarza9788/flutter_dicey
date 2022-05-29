@@ -4,11 +4,26 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1563af5d-049d-44dc-93c5-100fd6008e85" name="Default Changelist" comment="" />
+    <list default="true" id="1563af5d-049d-44dc-93c5-100fd6008e85" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.flutter-plugins-dependencies" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins-dependencies" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/android/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/android/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/src/main/java/io/flutter/plugins/GeneratedPluginRegistrant.java" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/java/io/flutter/plugins/GeneratedPluginRegistrant.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Flutter/Generated.xcconfig" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Flutter/Generated.xcconfig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Flutter/flutter_export_environment.sh" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Flutter/flutter_export_environment.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Runner/GeneratedPluginRegistrant.h" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Runner/GeneratedPluginRegistrant.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Runner/GeneratedPluginRegistrant.m" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Runner/GeneratedPluginRegistrant.m" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.lock" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1ssPR0V6AB6RNVvZ0VJB5csXSHF" />
   <component name="ProjectViewState">
@@ -22,6 +37,7 @@
     <property name="cidr.known.project.marker" value="true" />
     <property name="dart.analysis.tool.window.visible" value="false" />
     <property name="io.flutter.reload.alreadyRun" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="reference.settings.ide.settings.notifications" />
     <property name="show.migrate.to.gradle.popup" value="false" />
   </component>
@@ -41,27 +57,5 @@
       <updated>1621658320934</updated>
     </task>
     <servers />
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="100" y="100" width="1066" height="1004" key="AVDManager" timestamp="1622395965672">
-      <screen x="0" y="0" width="2194" height="1204" />
-    </state>
-    <state x="100" y="100" width="1066" height="1004" key="AVDManager/0.0.2194.1204@0.0.2194.1204" timestamp="1622395965672" />
-    <state width="2151" height="275" key="GridCell.Tab.0.bottom" timestamp="1622395965616">
-      <screen x="0" y="0" width="2194" height="1204" />
-    </state>
-    <state width="2151" height="275" key="GridCell.Tab.0.bottom/0.0.2194.1204@0.0.2194.1204" timestamp="1622395965616" />
-    <state width="2151" height="275" key="GridCell.Tab.0.center" timestamp="1622395965615">
-      <screen x="0" y="0" width="2194" height="1204" />
-    </state>
-    <state width="2151" height="275" key="GridCell.Tab.0.center/0.0.2194.1204@0.0.2194.1204" timestamp="1622395965615" />
-    <state width="2151" height="275" key="GridCell.Tab.0.left" timestamp="1622395965615">
-      <screen x="0" y="0" width="2194" height="1204" />
-    </state>
-    <state width="2151" height="275" key="GridCell.Tab.0.left/0.0.2194.1204@0.0.2194.1204" timestamp="1622395965615" />
-    <state width="2151" height="275" key="GridCell.Tab.0.right" timestamp="1622395965616">
-      <screen x="0" y="0" width="2194" height="1204" />
-    </state>
-    <state width="2151" height="275" key="GridCell.Tab.0.right/0.0.2194.1204@0.0.2194.1204" timestamp="1622395965616" />
   </component>
 </project>
